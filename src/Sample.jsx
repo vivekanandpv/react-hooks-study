@@ -2,26 +2,36 @@ import React, { useEffect, useState } from 'react';
 
 const Sample = (props) => {
   const [counter, setCounter] = useState(0);
+  const [secondCounter, setSecondCounter] = useState(0);
+
   const increment = () => {
     setCounter((v) => {
       return v + 1;
     });
   };
 
-  //  Specifying the filtration criterion for the useEffect
+  const decrement = () => {
+    setSecondCounter((v) => {
+      return v - 1;
+    });
+  };
+
   useEffect(() => {
     console.log('useEffect: for counter change', counter);
-    //    stay away from state changes within the useEffect
-    //    it may turn out to be recursive
-  }, [counter]); //  runs only for counter updates (props change does not matter)
+  }, [counter]);
+
+  useEffect(() => {
+    console.log('useEffect: for secondCounter change', secondCounter);
+  }, [secondCounter]);
 
   return (
     <>
       <h3>
-        Sample Component: Counter: {counter}; Index: {props.index}
+        Sample Component: Counter: {counter}; Second Counter: {secondCounter}
       </h3>
       <hr />
       <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
     </>
   );
 };
