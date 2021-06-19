@@ -5,14 +5,17 @@ const Sample = () => {
 
   const changeCounter = (op) => {
     if (op === 'inc') {
-      //  counter++ or counter-- doesn't work!
-      //  we should use setCounter to change counter
+      //  state changes (using hooks or in class components using setState)
+      //  are asynchronous. That means, the counter is changed asynchronous
+      //  Never write the code thinking that immediately after setCounter,
+      //  the counter is changed.
 
-      //  this is a preferred approach
+      console.log('Before setCounter: inc:', counter);
       setCounter((v) => {
-        //    v is the current counter
-        return v + 1; //  return the new counter
+        console.log('Inside setCounter: inc:', v);
+        return v + 1;
       });
+      console.log('After setCounter: inc:', counter);
     } else {
       setCounter((v) => {
         return v - 1;
