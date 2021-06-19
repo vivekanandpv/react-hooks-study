@@ -35,9 +35,32 @@ const Sample = () => {
 
   const [state, dispatch] = useReducer(sampleReducer, initialState);
 
+  const changeFirstName = () => {
+    const action = {
+      type: 'updateFirstName',
+      payload: 'Rajendra',
+    };
+    dispatch(action);
+  };
+
+  const changeLastName = () => {
+    const action = {
+      type: 'updateLastName',
+      payload: 'Kumar',
+    };
+    dispatch(action);
+  };
+
   return (
     <>
       <h3>Sample Component</h3>
+      <hr />
+      <p>
+        First Name: {state.firstName}; Last Name: {state.lastName}
+      </p>
+
+      <button onClick={changeFirstName}>Change First Name</button>
+      <button onClick={changeLastName}>Change Last Name</button>
     </>
   );
 };
