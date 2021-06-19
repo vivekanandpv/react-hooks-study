@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sample from './Sample';
 
 function App() {
+  const [showSample, setShowSample] = useState(true);
+
+  const toggle = () => {
+    setShowSample((v) => {
+      return !v;
+    });
+  };
+
   return (
     <>
-      <h3>React Hooks Study</h3>
+      <h3>
+        React Hooks Study <button onClick={toggle}>Toggle Sample</button>
+      </h3>
 
       <hr />
 
-      <Sample />
+      {showSample ? <Sample /> : null}
     </>
   );
 }
