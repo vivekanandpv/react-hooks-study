@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
 
 const Sample = () => {
+  console.log('Sample component rendering...');
+
   const [counter, setCounter] = useState(0);
 
+  //    this call triggers the component re-rendering
   const changeCounter = (op) => {
     if (op === 'inc') {
-      //  state changes (using hooks or in class components using setState)
-      //  are asynchronous. That means, the counter is changed asynchronous
-      //  Never write the code thinking that immediately after setCounter,
-      //  the counter is changed.
-
-      console.log('Before setCounter: inc:', counter);
       setCounter((v) => {
-        console.log('Inside setCounter: inc:', v);
         return v + 1;
       });
-      console.log('After setCounter: inc:', counter);
     } else {
       setCounter((v) => {
         return v - 1;
