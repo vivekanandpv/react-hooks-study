@@ -1,17 +1,31 @@
 import React, { useState } from 'react';
 
 const Sample = () => {
-  //  useState introduces the state variable and a mutator of the state variable
-  //  importing useState is required
-  const [name, setName] = useState('Default Name');
-  //  name is state variable, setName is the dispatcher or mutator for the name
+  const [counter, setCounter] = useState(0);
 
-  //  Always remember, function components DO NOT HAVE this!
-  //  name is bound by using {name}
+  const changeCounter = (op) => {
+    if (op === 'inc') {
+      //  counter++ or counter-- doesn't work!
+      //  we should use setCounter to change counter
+
+      //  this is a preferred approach
+      setCounter((v) => {
+        //    v is the current counter
+        return v + 1; //  return the new counter
+      });
+    } else {
+      setCounter((v) => {
+        return v - 1;
+      });
+    }
+  };
+
   return (
     <>
       <h3>Sample Component</h3>
-      <p>Name: {name}</p>
+      <p>Counter: {counter}</p>
+      <button onClick={() => changeCounter('inc')}>Increment</button>
+      <button onClick={() => changeCounter('dec')}>Decrement</button>
     </>
   );
 };
